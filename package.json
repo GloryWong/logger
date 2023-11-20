@@ -1,6 +1,6 @@
 {
   "name": "@gloxy/mini-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a debug based logger with preset colors, running on both browsers and Node.",
   "license": "MIT",
   "main": "dist/index.js",

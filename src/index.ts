@@ -82,20 +82,16 @@ function disable() {
   return debug.disable();
 }
 
-function enableOrDisable(namespace?: string) {
+function enableNamespace(namespace?: string) {
   if (namespace) {
     enable(namespace);
-  } else {
-    disable();
   }
 }
 
-if (window?.localStorage) {
-  enableOrDisable(window.localStorage['minilogger']);
-}
-
-if (process?.env.MINI_LOGGER) {
-  enableOrDisable(process.env.MINILOGGER);
+if (typeof window !== 'undefined') {
+  enableNamespace(window.localStorage['minilogger']);
+} else if (typeof process !== 'undefined') {
+  enableNamespace(process.env.MINILOGGER);
 }
 
 export { createLogger, enable, disable };
