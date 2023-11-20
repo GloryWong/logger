@@ -32,15 +32,16 @@ pnpm add @gloxy/mini-logger
 
 > For all logger methods, the first parameter is a title for it. The second paramter is a formatter, and the rest are any strings one by one  for the formatter.
 
-Activate logger
-* Browser: localStorage.debug = 'myapp:*'
-* Node: add the env variable DEBUG = myapp:*
+Activate logger: `*` represents all log types(info, success, warn, error, and debug). You can also specify a type.
+* Browser: localStorage.minilogger = 'myapp:*'
+* Node: add the env variable MINILOGGER = myapp:*
 
 Deactivate by remove them respectively.
 
 ```javascript
 // Create the logger instance in the very beginning of your app.
-// The namespace is for the logs being distingushiable from other prints, i.e. myapp
+// The name is for the logs being distingushiable from other prints, i.e. myapp
+const { createLogger } = require('@gloxy/mini-logger');
 const logger = createLogger('myapp');
 
 // Print info
@@ -58,6 +59,11 @@ logger.error('play ball', 'ball player: %s', 'Mary');
 
 // Print debug
 logger.debug('play ball', 'ball player: %s', 'Mary');
+
+// Enable or disable logger programmatically
+const { enable, disable } = require('@gloxy/mini-logger');
+enable('myapp:*');
+disable();
 
 ```
 

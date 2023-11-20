@@ -29,27 +29,22 @@ const configs = [
 ];
 
 function createInternalLogger(
-  namespace: string,
+  name: string,
   type: string,
   consoleMethod: (...args: any[]) => any,
   color: string,
 ) {
-  const logger = debug(`${namespace}:${type}`);
+  const logger = debug(`${name}:${type}`);
   logger.log = consoleMethod.bind(console);
   logger.color = color;
   return logger;
 }
 
-function createLoggerMethods(namespace: string) {
+function createLoggerMethods(name: string) {
   return configs.map(
     ({ type, consoleMethod, color }) =>
       (title: string, formatter: any, ...args: any[]) => {
-        const logger = createInternalLogger(
-          namespace,
-          type,
-          consoleMethod,
-          color,
-        );
+        const logger = createInternalLogger(name, type, consoleMethod, color);
         logger(`[${title}] ${formatter}`, ...args);
       },
   );
@@ -66,10 +61,8 @@ export interface Logger {
   debug: LoggerMethod;
 }
 
-function createLogger(namespace: string) {
-  const [error, warn, info, success, debug] = createLoggerMethods(
-    namespace.trim(),
-  );
+function createLogger(name: string) {
+  const [error, warn, info, success, debug] = createLoggerMethods(name.trim());
   const logger: Logger = (...args: Parameters<LoggerMethod>) => info(...args);
 
   logger.info = info;
@@ -81,4 +74,28 @@ function createLogger(namespace: string) {
   return logger;
 }
 
-export { createLogger };
+function enable(namespace: string) {
+  return debug.enable(namespace);
+}
+
+function disable() {
+  return debug.disable();
+}
+
+function enableOrDisable(namespace?: string) {
+  if (namespace) {
+    enable(namespace);
+  } else {
+    disable();
+  }
+}
+
+if (window?.localStorage) {
+  enableOrDisable(window.localStorage['minilogger']);
+}
+
+if (process?.env.MINI_LOGGER) {
+  enableOrDisable(process.env.MINILOGGER);
+}
+
+export { createLogger, enable, disable };

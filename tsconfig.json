@@ -13,7 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "lib": [
       "esnext",
-      "dom"
+      "dom",
     ],
     "baseUrl": ".",
     "outDir": "dist"
