@@ -1,50 +1,64 @@
 {
-  "name": "@gloxy/mini-logger",
-  "version": "0.0.4",
-  "description": "a debug based logger with preset colors, running on both browsers and Node.",
-  "license": "MIT",
-  "main": "dist/index.js",
+  "name": "@gloxy/logger",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "A `debug`-based logger with predefined methods and scope title, available in both browsers and Node.js.",
   "author": {
     "name": "GloryWong",
     "email": "glorywong1001@gmail.com",
-    "url": "https://zhaozhao.today"
+    "url": "https://glorywong.com"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/GloryWong/logger#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GloryWong/mini-logger.git"
+    "url": "git+https://github.com/GloryWong/logger.git"
   },
   "bugs": {
-    "url": "https://github.com/GloryWong/mini-logger/issues"
+    "url": "https://github.com/GloryWong/logger/issues"
   },
-  "homepage": "https://github.com/GloryWong/mini-logger#readme",
+  "keywords": ["log", "logger", "print", "debug", "module", "typescript", "javascript", "node", "browser"],
+  "main": "./dist",
+  "types": "./dist",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "dev": "pnpm clean && tsc -w",
-    "build": "pnpm clean && tsc",
-    "clean": "rimraf -rf ./generators",
+    "build": "rimraf dist && tsc",
     "prepublishOnly": "pnpm build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --ext \".js,.ts\" .",
-    "fix": "pnpm lint --fix",
-    "pretty": "prettier --write --ignore-path .gitignore .",
-    "prepare": "husky install"
-  },
-  "devDependencies": {
-    "@types/debug": "^4.1.12",
-    "@types/node": "^20.9.2",
-    "@typescript-eslint/eslint-plugin": "^6.11.0",
-    "@typescript-eslint/parser": "^6.11.0",
-    "eslint": "^8.53.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-unused-imports": "^3.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.1.0",
-    "prettier": "^3.1.0",
-    "rimraf": "^5.0.5",
-    "type-fest": "^4.7.1",
-    "typescript": "^5.2.2"
+    "lint": "eslint .",
+    "lint:fix": "pnpm lint --fix",
+    "prepare": "pnpm simple-git-hooks"
   },
   "dependencies": {
-    "debug": "^4.3.4"
+    "debug": "^4.3.5",
+    "detect-node-es": "^1.1.0",
+    "supports-color": "^9.4.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.21.1",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^20.14.9",
+    "eslint": "^8.57.0",
+    "eslint-plugin-perfectionist": "^2.11.0",
+    "lint-staged": "^15.2.7",
+    "rimraf": "^5.0.7",
+    "simple-git-hooks": "^2.11.1",
+    "type-fest": "^4.20.1",
+    "typescript": "^5.5.2"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "pnpm commitlint --edit ${1}"
+  },
+  "lint-staged": {
+    "*": "pnpm lint:fix"
   }
 }

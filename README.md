@@ -1,79 +1,83 @@
-<h1 align="center">Welcome to mini-logger 👋</h1>
-<p>
-  <a href="https://github.com/GloryWong/mini-logger/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/GloryWong/mini-logger" />
-  </a>
-</p>
+<h1 align="center">Welcome to logger 👋</h1>
 
-mini-logger a [debug](https://github.com/debug-js/debug#readme) based logger with preset colors, running on both browsers and Node.
+![GitHub License](https://img.shields.io/github/license/GloryWong/logger)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/GloryWong/logger)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/GloryWong/logger/release.yml)
+![GitHub Release](https://img.shields.io/github/v/release/GloryWong/logger)
+![GitHub Release Date](https://img.shields.io/github/release-date/GloryWong/logger)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/GloryWong/logger)
+![GitHub watchers](https://img.shields.io/github/watchers/GloryWong/logger)
+![GitHub forks](https://img.shields.io/github/forks/GloryWong/logger)
+![GitHub Repo stars](https://img.shields.io/github/stars/GloryWong/logger)
+![NPM Version](https://img.shields.io/npm/v/%40gloxy%2Flogger)
+![NPM Type Definitions](https://img.shields.io/npm/types/%40gloxy%2Flogger)
+![NPM Downloads](https://img.shields.io/npm/dw/%40gloxy%2Flogger)
+![npm bundle size](https://img.shields.io/bundlephobia/min/%40gloxy%2Flogger)
+![Node Current](https://img.shields.io/node/v/%40gloxy%2Flogger)
+
+A [debug](https://github.com/debug-js/debug#readme)-based logger with predefined methods and scope title, available in both browsers and Node.js.
 
 ## Install
 
 ```bash
-npm install @gloxy/mini-logger
-```
-
-or
-
-```bash
-yarn add @gloxy/mini-logger
-```
-
-or
-
-```bash
-pnpm add @gloxy/mini-logger
+npm install @gloxy/logger
+# or
+yarn add @gloxy/logger
+# or
+pnpm add @gloxy/logger
 ```
 
 ## Usage
 
-> For all logger methods, the first parameter is a title for it. The second paramter is a formatter, and the rest are any strings one by one  for the formatter.
+### Enabling and Disabling
 
-Activate logger: `*` represents all log types(info, success, warn, error, and debug). You can also specify a type.
-* Browser: localStorage.minilogger = 'myapp:*'
-* Node: add the env variable MINILOGGER = myapp:*
+- To enable the logger: `*` represents all log types (`info`, `success`, `warn`, `error`, and `debug`).
 
-Deactivate by remove them respectively.
+  * In browser: `localStorage.logger = 'myapp:*'`
+  * In Node.js: set the environment variable `LOGGER = myapp:* node index.js`
+
+  Specify a type to enable the single type of logger, e.g, `myapp:info`.
+
+- Disable logger by removing it.
+
+Or enable or disable the logger programmatically
 
 ```javascript
-// Create the logger instance in the very beginning of your app.
-// The name is for the logs being distingushiable from other prints, i.e. myapp
-const { createLogger } = require('@gloxy/mini-logger');
-const logger = createLogger('myapp');
+import { disable, enable } from '@gloxy/logger'
 
-// Print info
-logger('play ball', 'ball player: %s', 'Mary');
-logger.info('play ball', 'ball player: %s', 'Mary');
+enable('myapp:*')
+disable()
+```
 
-// Print warn
-logger.warn('play ball', 'ball player: %s', 'Mary');
+### Basic Usage
 
-// Print success
-logger.success('play ball', 'ball player: %s', 'Mary');
+```javascript
+// Instantiate the logger at the beginning of your application.
+// The only parameter `name` (e.g., 'myapp') helps distinguish these logs from other prints.
+import { createLogger } from '@gloxy/logger'
+const logger = createLogger('myapp')
 
-// Print error
-logger.error('play ball', 'ball player: %s', 'Mary');
+logger.info('Ball player %s is performing well', 'Mary')
+// Outputs: colored `myapp:info Ball player Mary is performing well +0ms`.
+```
 
-// Print debug
-logger.debug('play ball', 'ball player: %s', 'Mary');
+### Title Scoped Logger
 
-// Enable or disable logger programmatically
-const { enable, disable } = require('@gloxy/mini-logger');
-enable('myapp:*');
-disable();
+```javascript
+// In addition to the basic usage, you can also create title-scoped logger, especially useful for module files
 
+const log = logger('foo')
+log.info('Ball player %s is performing well', 'Mary')
+// Outputs: colored `myapp:info [foo] Ball player Mary is performing well +0ms`.
 ```
 
 ## Author
 
 👤 **GloryWong**
 
-* Website: https://zhaozhao.today
+* Website: https://glorywong.com
 * GitHub: [@GloryWong](https://github.com/GloryWong)
 
-## Show your support
+## Show Your Support
 
 Give a ⭐️ if this project helped you!

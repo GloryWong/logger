@@ -1,27 +1,11 @@
 {
+  "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
-    "target": "ESNext",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "skipLibCheck": true,
-    "strict": true,
-    "allowJs": true,
+    "lib": ["dom"],
     "declaration": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "lib": [
-      "esnext",
-      "dom",
-    ],
-    "baseUrl": ".",
-    "outDir": "dist"
+    "outDir": "./dist"
   },
   "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
+    "index.ts"
   ]
 }
