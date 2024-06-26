@@ -1,7 +1,7 @@
 {
   "name": "@gloxy/logger",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A `debug`-based logger with predefined methods and scope title, available in both browsers and Node.js.",
   "author": {
     "name": "GloryWong",
@@ -17,7 +17,17 @@
   "bugs": {
     "url": "https://github.com/GloryWong/logger/issues"
   },
-  "keywords": ["log", "logger", "print", "debug", "module", "typescript", "javascript", "node", "browser"],
+  "keywords": [
+    "log",
+    "logger",
+    "print",
+    "debug",
+    "module",
+    "typescript",
+    "javascript",
+    "node",
+    "browser"
+  ],
   "main": "./dist",
   "types": "./dist",
   "files": [
