@@ -1,7 +1,7 @@
 {
   "name": "@gloxy/logger",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A `debug`-based logger with predefined methods and scope title, available in both browsers and Node.js.",
   "author": {
     "name": "GloryWong",
