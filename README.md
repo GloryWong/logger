@@ -31,12 +31,14 @@ pnpm add @gloxy/logger
 
 ### Enabling and Disabling
 
-- To enable the logger: `*` represents all log types (`info`, `success`, `warn`, `error`, and `debug`).
+The only parameter `name` (e.g., 'myapp'), representing namespace, helps distinguish these logs from other prints.
+
+- To enable the logger: `*` represents all log levels (`debug`, `info`, `warn`, and `error`).
 
   * In browser: `localStorage.logger = 'myapp:*'`
   * In Node.js: set the environment variable `LOGGER = myapp:* node index.js`
 
-  Specify a type to enable the single type of logger, e.g, `myapp:info`.
+  Specify a level name to enable a single level of logger, e.g, `myapp:info`.
 
 - Disable logger by removing it.
 
@@ -53,7 +55,6 @@ disable()
 
 ```javascript
 // Instantiate the logger at the beginning of your application.
-// The only parameter `name` (e.g., 'myapp') helps distinguish these logs from other prints.
 import { createLogger } from '@gloxy/logger'
 const logger = createLogger('myapp')
 
