@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/GloryWong/logger/compare/v1.0.0...v2.0.0) (2024-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **method:** remove success and rename log type to log level
+
+### Features
+
+* **method:** remove success and rename log type to log level ([939708d](https://github.com/GloryWong/logger/commit/939708db91e4d507b04d90fb96bf240b874fef8a))
+
 ## 1.0.0 (2024-06-26)
 
 
