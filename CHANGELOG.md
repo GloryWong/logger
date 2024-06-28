@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.4](https://github.com/GloryWong/logger/compare/v2.1.3...v2.1.4) (2024-06-28)
+
+
+### Bug Fixes
+
+* move debug types to prod dep and remove type-fest ([004ed81](https://github.com/GloryWong/logger/commit/004ed817d61236091bf2196b2571393f7ee8581c))
+
 ## [2.1.3](https://github.com/GloryWong/logger/compare/v2.1.2...v2.1.3) (2024-06-28)
 
 
