@@ -3,10 +3,10 @@ import { isNode } from 'detect-node-es'
 import debug from 'debug'
 import type { Simplify } from 'type-fest'
 
-type LoggerLevel = 'debug' | 'info' | 'warn' | 'error'
+type LoggerType = 'debug' | 'info' | 'warn' | 'error'
 
 interface LoggerConfig {
-  level: LoggerLevel
+  type: LoggerType
   consoleMethod: Console['log']
   color: string
   /**
@@ -15,27 +15,27 @@ interface LoggerConfig {
   colorCode: number
 }
 
-const configs: LoggerConfig[] = [
+const configs: Readonly<LoggerConfig>[] = [
   {
-    level: 'debug',
+    type: 'debug',
     consoleMethod: console.debug,
     color: 'gray',
     colorCode: 7,
   },
   {
-    level: 'info',
+    type: 'info',
     consoleMethod: console.info,
     color: '#1E90FF',
     colorCode: 27,
   },
   {
-    level: 'warn',
+    type: 'warn',
     consoleMethod: console.warn,
     color: '#FFA500',
     colorCode: 214,
   },
   {
-    level: 'error',
+    type: 'error',
     consoleMethod: console.error,
     color: '#DC143C',
     colorCode: 160,
@@ -43,10 +43,11 @@ const configs: LoggerConfig[] = [
 ]
 
 function createDebugger(
-  name: string,
-  { level, consoleMethod, color, colorCode }: LoggerConfig,
+  namespace: string,
+  { type, consoleMethod, color, colorCode }: LoggerConfig,
 ) {
-  const logger = debug(`${name}:${level}`)
+  const logger = debug(`${namespace}:${type}`)
+
   logger.log = consoleMethod.bind(console)
   logger.color = isNode ? String(colorCode) : color
   return logger
@@ -54,48 +55,126 @@ function createDebugger(
 
 type LoggerMethod = (formatter: any, ...args: any[]) => void
 
-function createLoggerMethods(name: string) {
-  return configs.map<[LoggerLevel, LoggerMethod]>(config =>
-    [config.level, createDebugger(name, config)],
+function createLoggerMethods(namespace: string) {
+  return configs.map<[LoggerType, LoggerMethod]>(config =>
+    [config.type, createDebugger(namespace, config)],
   )
 }
 
-type _Logger = Simplify<Record<LoggerLevel, LoggerMethod>>
+type _Logger = Simplify<Record<LoggerType, LoggerMethod>>
 interface Logger extends _Logger {
   (title: string): _Logger
 }
 
-function createLogger(name: string) {
-  const loggerMethods = createLoggerMethods(name)
+function isValidNamespace(namespace: string) {
+  if (!namespace.length)
+    return false
+  return !(/[\s:,]/.test(namespace))
+}
+
+function isValidName(name: string) {
+  const [namespace, value] = name.split(':')
+  if (!namespace || !value)
+    return false
+  if (!isValidNamespace(namespace))
+    return false
+  return true
+}
+
+function createLogger(namespace: string) {
+  const _namespace = namespace.trim()
+  if (!isValidNamespace(_namespace))
+    throw new Error(`Failed to create logger: invalid namespace '${_namespace}'`)
+
+  const loggerMethods = createLoggerMethods(_namespace)
   const _logger = Object.fromEntries(loggerMethods) as _Logger
 
   const logger = (title: string) =>
-    Object.fromEntries(loggerMethods.map<[LoggerLevel, LoggerMethod]>(([level, method]) => [level, (formatter: any, ...args: any[]) => method(`[${title}] ${formatter}`, ...args)])) as _Logger
+    Object.fromEntries(loggerMethods.map<[LoggerType, LoggerMethod]>(([type, method]) => [type, (formatter: any, ...args: any[]) => method(`[${title}] ${formatter}`, ...args)])) as _Logger
 
   Object.assign(logger, _logger)
 
   return logger as Logger
 }
 
-function enable(namespace: string) {
-  return debug.enable(namespace)
+// Level definition
+type LoggerLevel = '1' | '2' | '3' | '4'
+type LoggerLevelTypes = Record<LoggerLevel, LoggerType[]>
+export const loggerLevelTypes: LoggerLevelTypes = {
+  1: ['error'],
+  2: ['error', 'warn'],
+  3: ['error', 'warn', 'info'],
+  4: ['error', 'warn', 'info', 'debug'],
+}
+
+// Enable and disable
+
+type NoSpecialChars<T extends string> =
+  T extends `${infer _Start},${infer _End}` ? never :
+    T extends `${infer _Start} ${infer _End}` ? never :
+      T extends `${infer _Start}:${infer _End}` ? never :
+        T
+
+type NameType<T extends string> = `${NoSpecialChars<T>}:${LoggerType}`
+type NameTypeMulti<T extends string> = `${NameType<T>},${NameType<T>}` | `${NameType<T>},${NameType<T>},${NameType<T>}` | `${NameType<T>},${NameType<T>},${NameType<T>},${NameType<T>}`
+type NameLevel<T extends string> = `${NoSpecialChars<T>}:${LoggerLevel}`
+export type Name<T extends string> = NameType<T> | NameTypeMulti<T> | `${string}:*` | NameLevel<T>
+
+function enable<T extends string>(name: Name<T>) {
+  const _name = name.trim()
+  if (!isValidName(_name)) {
+    console.error('![logger]: Failed to enable logger. Invalid name `%s`.', _name)
+    return
+  }
+
+  const [namespace, value] = _name.split(':')
+
+  // level
+  if (/^[1-4]$/.test(value)) {
+    const names = loggerLevelTypes[value as LoggerLevel].map(type => `${namespace}:${type}`).join(',')
+
+    debug.enable(names)
+    return
+  }
+
+  return debug.enable(name)
 }
 
 function disable() {
   return debug.disable()
 }
 
-function enableNamespace(namespace?: string) {
-  if (namespace) {
-    enable(namespace)
-  }
+function isEnabled(name: string) {
+  return debug.enabled(name)
 }
 
 if (isNode) {
-  enableNamespace((await import('node:process')).env.LOGGER)
+  const name = (await import('node:process')).env.LOGGER
+  if (name)
+    enable(name as Name<string>)
 }
 else {
-  enableNamespace(window.localStorage.logger)
+  if (window.localStorage.logger)
+    enable(window.localStorage.logger)
 }
 
-export { createLogger, enable, disable }
+export {
+  createLogger,
+  enable as enableLogger,
+  disable as disableLogger,
+  isEnabled as isLoggerEnabled,
+}
+
+// Namespace: foo
+const logger = createLogger('foo')
+logger.debug('Hello world: %s.', '백선생, 백종원 중국집 짜장면 만들기~!')
+logger.info('Hello world: %d.', 1234)
+logger.warn('Hello world: %o.', true)
+logger.error('Hello world: %o.', { name: 'Jajangmyeon', native: '짜장면' })
+
+// Title-scope: bar
+const log = logger('bar')
+log.debug('Hello world: %s.', 'A thick sauce made of chunjang, diced pork, and vegetables')
+log.info('Hello world: %d.', 5678)
+log.warn('Hello world: %o.', false)
+log.error('Hello world: %o.', { name: 'Jajangmyeon', native: '짜장면' })

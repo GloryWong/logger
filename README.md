@@ -12,10 +12,20 @@
 ![NPM Version](https://img.shields.io/npm/v/%40gloxy%2Flogger)
 ![NPM Type Definitions](https://img.shields.io/npm/types/%40gloxy%2Flogger)
 ![NPM Downloads](https://img.shields.io/npm/dw/%40gloxy%2Flogger)
-![npm bundle size](https://img.shields.io/bundlephobia/min/%40gloxy%2Flogger)
 ![Node Current](https://img.shields.io/node/v/%40gloxy%2Flogger)
 
-A [debug](https://github.com/debug-js/debug#readme)-based logger with predefined methods and scope title, available in both browsers and Node.js.
+![demo-code-snap](demo-code-snap.png)
+
+![demo-output-snap](demo-output-snap.png)
+
+---
+
+A [debug.js](https://github.com/debug-js/debug#readme)-based logging utility:
+
+* Predefined log types (`debug`, `info`, `warn`, `error`);
+* Use **namespace** to distinguish your app logs from other outputs in browser Consoles or Terminals;
+* Enable one or more types or a log level as you need;
+* **Title-scoped** logs to further title your logs across app modules.
 
 ## Install
 
@@ -29,20 +39,69 @@ pnpm add @gloxy/logger
 
 ## Usage
 
+### Create and logging
+
+The only parameter `namespace` (e.g., 'myapp') helps distinguish these logs from other prints on Browser DevTool Consoles or Terminals.
+
+```javascript
+import { createLogger } from '@gloxy/logger'
+const logger = createLogger('myapp')
+```
+
+Logger includes 4 types of logging: `debug`, `info`, `warn`, and `error`, which use the respective `console` methods under the hood of the browsers and Node.js.
+
+```javascript
+logger.info('Ball player %s is performing well', 'Mary')
+// myapp:info Ball player Mary is performing well +0ms
+```
+
+### Title Scoped Logger
+
+You can create title-scoped logger `logger(<title>)`, especially useful for module files.
+
+```javascript
+/* ./logger.js  */
+
+import { createLogger } from '@gloxy/logger'
+export const logger = createLogger('myapp')
+```
+
+```javascript
+/* ./foo.js */
+
+import { logger } from './logger'
+
+const log = logger('foo')
+log.info('Ball player %s is performing well', 'Mary')
+// myapp:info [foo] Ball player Mary is performing well +0ms
+```
+
+```javascript
+/* ./bar.js */
+
+import { logger } from './logger'
+
+const log = logger('bar')
+log.info('Ball player %s is performing well', 'Mary')
+// myapp:info [bar] Ball player Mary is performing well +0ms
+```
+
 ### Enabling and Disabling
 
-The only parameter `name` (e.g., 'myapp'), representing namespace, helps distinguish these logs from other prints.
+Logger is disabled by default. You can enable all log types (`*`) or one of them(`debug`, `info`, `warn`, and `error`) by setting name (**namespace:type**), or multiple types (separated with commas, **namespace:type1,namespace:type2**). Refer to [debug.js](https://github.com/debug-js/debug/tree/master?tab=readme-ov-file#wildcards).
 
-- To enable the logger: `*` represents all log levels (`debug`, `info`, `warn`, and `error`).
+#### Platforms
 
-  * In browser: `localStorage.logger = 'myapp:*'`
-  * In Node.js: set the environment variable `LOGGER = myapp:* node index.js`
+- To enable the logger:
 
-  Specify a level name to enable a single level of logger, e.g, `myapp:info`.
+  * In web browsers: `localStorage.logger = 'myapp:*'`
+  * In Node.js: set the environment variable `LOGGER=myapp:*`
 
-- Disable logger by removing it.
+  Specify a type to enable the single type of logger, e.g, `myapp:error`.
 
-Or enable or disable the logger programmatically
+- Disable logger by removing these settings.
+
+#### Programmatically
 
 ```javascript
 import { disable, enable } from '@gloxy/logger'
@@ -51,25 +110,21 @@ enable('myapp:*')
 disable()
 ```
 
-### Basic Usage
+#### Enable by levels
+
+Logger supports 4 levels. You can enable multiple log types by enabling a level (**namespace:level**).
+
+- 1: `error`
+- 2: `error, warn`
+- 3: `error, warn, info`
+- 4: `error, warn, info, debug`
+
+For example, enable level 2 to output only critical error and warning logs in producation.
 
 ```javascript
-// Instantiate the logger at the beginning of your application.
-import { createLogger } from '@gloxy/logger'
-const logger = createLogger('myapp')
-
-logger.info('Ball player %s is performing well', 'Mary')
-// Outputs: colored `myapp:info Ball player Mary is performing well +0ms`.
-```
-
-### Title Scoped Logger
-
-```javascript
-// In addition to the basic usage, you can also create title-scoped logger, especially useful for module files
-
-const log = logger('foo')
-log.info('Ball player %s is performing well', 'Mary')
-// Outputs: colored `myapp:info [foo] Ball player Mary is performing well +0ms`.
+if (import.meta.env.NODE_ENV === 'producation') {
+  enable('myapp:2')
+}
 ```
 
 ## Author
