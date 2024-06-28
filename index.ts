@@ -3,7 +3,7 @@ import { isNode } from 'detect-node-es'
 import debug from 'debug'
 import type { Simplify } from 'type-fest'
 
-type LoggerType = 'debug' | 'info' | 'warn' | 'error'
+export type LoggerType = 'debug' | 'info' | 'warn' | 'error'
 
 interface LoggerConfig {
   type: LoggerType
@@ -62,7 +62,7 @@ function createLoggerMethods(namespace: string) {
 }
 
 type _Logger = Simplify<Record<LoggerType, LoggerMethod>>
-interface Logger extends _Logger {
+export interface Logger extends _Logger {
   (title: string): _Logger
 }
 
@@ -98,8 +98,8 @@ function createLogger(namespace: string) {
 }
 
 // Level definition
-type LoggerLevel = '1' | '2' | '3' | '4'
-type LoggerLevelTypes = Record<LoggerLevel, LoggerType[]>
+export type LoggerLevel = '1' | '2' | '3' | '4'
+export type LoggerLevelTypes = Record<LoggerLevel, LoggerType[]>
 export const loggerLevelTypes: LoggerLevelTypes = {
   1: ['error'],
   2: ['error', 'warn'],
