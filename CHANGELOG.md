@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/GloryWong/logger/compare/v2.1.1...v2.1.2) (2024-06-28)
+
+
+### Bug Fixes
+
+* module entry for types ([72a4715](https://github.com/GloryWong/logger/commit/72a4715505cbffd5ab3ef254e86308073b35f39f))
+
 ## [2.1.1](https://github.com/GloryWong/logger/compare/v2.1.0...v2.1.1) (2024-06-28)
 
 
