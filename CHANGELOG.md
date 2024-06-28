@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/GloryWong/logger/compare/v2.0.0...v2.1.0) (2024-06-28)
+
+
+### Features
+
+* add log levels and can enable multiple logging with levels ([f8f03b3](https://github.com/GloryWong/logger/commit/f8f03b355c04ed8267cc3715bf6d3741ab71cb7f))
+
 ## [2.0.0](https://github.com/GloryWong/logger/compare/v1.0.0...v2.0.0) (2024-06-27)
 
 
