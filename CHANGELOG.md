@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.3](https://github.com/GloryWong/logger/compare/v2.1.2...v2.1.3) (2024-06-28)
+
+
+### Bug Fixes
+
+* export necessary types ([98cbe6c](https://github.com/GloryWong/logger/commit/98cbe6c8d87cb5d5ea45601e843f657435f6c8c0))
+
 ## [2.1.2](https://github.com/GloryWong/logger/compare/v2.1.1...v2.1.2) (2024-06-28)
 
 
