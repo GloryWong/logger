@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/GloryWong/logger/compare/v2.1.0...v2.1.1) (2024-06-28)
+
+
+### Bug Fixes
+
+* remove demo code in index ([ee7ae4e](https://github.com/GloryWong/logger/commit/ee7ae4eb9ebceaf29d7dc807672d5614eabc5939))
+
 ## [2.1.0](https://github.com/GloryWong/logger/compare/v2.0.0...v2.1.0) (2024-06-28)
 
 
