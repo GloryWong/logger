@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { isNode } from 'detect-node-es'
 import debug from 'debug'
-import type { Simplify } from 'type-fest'
 
 export type LoggerType = 'debug' | 'info' | 'warn' | 'error'
 
@@ -61,7 +60,7 @@ function createLoggerMethods(namespace: string) {
   )
 }
 
-type _Logger = Simplify<Record<LoggerType, LoggerMethod>>
+type _Logger = Record<LoggerType, LoggerMethod>
 export interface Logger extends _Logger {
   (title: string): _Logger
 }

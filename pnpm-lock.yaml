@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       debug:
         specifier: ^4.3.5
         version: 4.3.5(supports-color@9.4.0)
@@ -30,9 +33,6 @@ importers:
       '@tsconfig/node18':
         specifier: ^18.2.4
         version: 18.2.4
-      '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
@@ -51,9 +51,6 @@ importers:
       simple-git-hooks:
         specifier: ^2.11.1
         version: 2.11.1
-      type-fest:
-        specifier: ^4.20.1
-        version: 4.20.1
       typescript:
         specifier: ^5.5.2
         version: 5.5.2
@@ -2104,10 +2101,6 @@ packages:
   type-fest@0.8.1:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
-
-  type-fest@4.20.1:
-    resolution: {integrity: sha512-R6wDsVsoS9xYOpy8vgeBlqpdOyzJ12HNfQhC/aAKWM3YoCV9TtunJzh/QpkMgeDhkoynDcw5f1y+qF9yc/HHyg==}
-    engines: {node: '>=16'}
 
   typescript@5.5.2:
     resolution: {integrity: sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==}
@@ -4361,8 +4354,6 @@ snapshots:
   type-fest@0.6.0: {}
 
   type-fest@0.8.1: {}
-
-  type-fest@4.20.1: {}
 
   typescript@5.5.2: {}
 
