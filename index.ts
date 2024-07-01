@@ -108,18 +108,7 @@ export const loggerLevelTypes: LoggerLevelTypes = {
 
 // Enable and disable
 
-type NoSpecialChars<T extends string> =
-  T extends `${infer _Start},${infer _End}` ? never :
-    T extends `${infer _Start} ${infer _End}` ? never :
-      T extends `${infer _Start}:${infer _End}` ? never :
-        T
-
-type NameType<T extends string> = `${NoSpecialChars<T>}:${LoggerType}`
-type NameTypeMulti<T extends string> = `${NameType<T>},${NameType<T>}` | `${NameType<T>},${NameType<T>},${NameType<T>}` | `${NameType<T>},${NameType<T>},${NameType<T>},${NameType<T>}`
-type NameLevel<T extends string> = `${NoSpecialChars<T>}:${LoggerLevel}`
-export type Name<T extends string> = NameType<T> | NameTypeMulti<T> | `${string}:*` | NameLevel<T>
-
-function enable<T extends string>(name: Name<T>) {
+function enable(name: string) {
   const _name = name.trim()
   if (!isValidName(_name)) {
     console.error('![logger]: Failed to enable logger. Invalid name `%s`.', _name)
@@ -150,7 +139,7 @@ function isEnabled(name: string) {
 if (isNode) {
   const name = (await import('node:process')).env.LOGGER
   if (name)
-    enable(name as Name<string>)
+    enable(name)
 }
 else {
   if (window.localStorage.logger)

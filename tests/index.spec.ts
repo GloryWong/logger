@@ -1,5 +1,4 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { Name } from '../index'
 import { createLogger, disableLogger, enableLogger, isLoggerEnabled, loggerLevelTypes } from '../index'
 
 const { debugSpy, infoSpy, warnSpy, errorSpy } = vi.hoisted(() => ({
@@ -20,12 +19,12 @@ describe('create and enable logger', () => {
   })
 
   it.each([[':'], ['test'], ['test:'], [':test']])('should print logger error when enable logger with invalid name `%s`', (name) => {
-    enableLogger(name as Name<string>)
+    enableLogger(name)
     expect(errorSpy).toHaveBeenCalledWith('![logger]: Failed to enable logger. Invalid name `%s`.', name)
   })
 
   it.each(Object.entries(loggerLevelTypes))('should enable types with respective level %s', (level, types) => {
-    enableLogger(`foo:${level}` as Name<string>)
+    enableLogger(`foo:${level}`)
     expect(types.every(type => isLoggerEnabled(`foo:${type}`))).toBeTruthy()
   })
 })
