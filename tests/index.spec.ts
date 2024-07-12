@@ -13,19 +13,30 @@ afterEach(() => {
   disableLogger()
 })
 
-describe('create and enable logger', () => {
+describe('create logger', () => {
   it.each([[''], [' '], ['test test'], ['test:test'], ['test,test']])('should throw error when create logger with invalid namespace `%s`', async (namespace) => {
     expect(() => createLogger(namespace)).toThrowError('invalid namespace')
   })
+})
 
-  it.each([[':'], ['test'], ['test:'], [':test']])('should print logger error when enable logger with invalid name `%s`', (name) => {
+describe('enable logger', () => {
+  it.each([[''], [':'], ['test'], ['test:'], [':test'], ['test:test:test'], ['test:12'], ['test:1test'], ['test:test,1']])('should print logger error when enable logger with invalid name `%s`', (name) => {
     enableLogger(name)
-    expect(errorSpy).toHaveBeenCalledWith('![logger]: Failed to enable logger. Invalid name `%s`.', name)
+    expect(errorSpy).toHaveBeenCalledOnce()
   })
 
   it.each(Object.entries(loggerLevelTypes))('should enable types with respective level %s', (level, types) => {
     enableLogger(`foo:${level}`)
     expect(types.every(type => isLoggerEnabled(`foo:${type}`))).toBeTruthy()
+  })
+})
+
+describe('enable multiple logger types', () => {
+  it('should enable multiple logger types correctly', () => {
+    enableLogger('foo:info, foo:2')
+    expect(isLoggerEnabled('info')).toBeTruthy()
+    expect(isLoggerEnabled('error')).toBeTruthy()
+    expect(isLoggerEnabled('warn')).toBeTruthy()
   })
 })
 

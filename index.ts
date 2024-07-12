@@ -65,27 +65,52 @@ export interface Logger extends _Logger {
   (title: string): _Logger
 }
 
-function isValidNamespace(namespace: string) {
-  if (!namespace.length)
-    return false
-  return !(/[\s:,]/.test(namespace))
+// Utils
+
+function checkNamespace(namespace: string): string | undefined {
+  if (!namespace.trim().length)
+    return 'Namespace cannot be empty'
+  if (/[\s:,]/.test(namespace))
+    return 'Namespace cannot include spaces, colons, and commas'
 }
 
-function isValidName(name: string) {
+function checkValue(value: string): string | undefined {
+  if (!value.trim().length)
+    return 'Value cannot be empty'
+
+  if (/[\s:,]/.test(value))
+    return 'Value cannot include spaces, colons, and commas'
+
+  if (/\d/.test(value) && value.length > 1 || !/\d/.test(value) && value !== '*' && !configs.map(({ type }) => type).includes(value as LoggerType))
+    return 'Value can only be either a type, a level, or a wildcard'
+}
+
+function checkName(name: string): string | undefined {
+  if (!/^[^:]+:[^:]+$/.test(name))
+    return 'Name should be the format `<namespace>:<value>`'
+
   const [namespace, value] = name.split(':')
-  if (!namespace || !value)
-    return false
-  if (!isValidNamespace(namespace))
-    return false
-  return true
+
+  const cn = checkNamespace(namespace)
+  if (cn)
+    return cn
+
+  const cv = checkValue(value)
+  if (cv)
+    return cv
+}
+
+export interface CreateLoggerOptions {
+  enabledTypes?: string
+  enabledLevel?: number
 }
 
 function createLogger(namespace: string) {
-  const _namespace = namespace.trim()
-  if (!isValidNamespace(_namespace))
-    throw new Error(`Failed to create logger: invalid namespace '${_namespace}'`)
+  const cn = checkNamespace(namespace)
+  if (cn)
+    throw new Error(`Failed to create logger: invalid namespace '${namespace}'. Reason: ${cn}`)
 
-  const loggerMethods = createLoggerMethods(_namespace)
+  const loggerMethods = createLoggerMethods(namespace)
   const _logger = Object.fromEntries(loggerMethods) as _Logger
 
   const logger = (title: string) =>
@@ -107,25 +132,30 @@ export const loggerLevelTypes: LoggerLevelTypes = {
 }
 
 // Enable and disable
-
-function enable(name: string) {
-  const _name = name.trim()
-  if (!isValidName(_name)) {
-    console.error('![logger]: Failed to enable logger. Invalid name `%s`.', _name)
+function enableName(name: string) {
+  const cn = checkName(name)
+  if (cn) {
+    console.error('[logger]: Failed to enable logger. Invalid name `%s`. Reason: %s', name, cn)
     return
   }
 
-  const [namespace, value] = _name.split(':')
+  const [namespace, value] = name.split(':')
 
   // level
   if (/^[1-4]$/.test(value)) {
     const names = loggerLevelTypes[value as LoggerLevel].map(type => `${namespace}:${type}`).join(',')
 
+    console.log('===', names)
     debug.enable(names)
     return
   }
 
   return debug.enable(name)
+}
+
+function enable(names: string) {
+  const nameArr = names.split(',')
+  nameArr.forEach(name => name && enableName(name.trim()))
 }
 
 function disable() {
