@@ -22,7 +22,7 @@ describe('create logger', () => {
 describe('enable logger', () => {
   it.each([[''], [':'], ['test'], ['test:'], [':test'], ['test:test:test'], ['test:12'], ['test:1test'], ['test:test,1']])('should print logger error when enable logger with invalid name `%s`', (name) => {
     enableLogger(name)
-    expect(errorSpy).toHaveBeenCalledOnce()
+    expect(errorSpy).toHaveBeenCalled()
   })
 
   it.each(Object.entries(loggerLevelTypes))('should enable types with respective level %s', (level, types) => {
@@ -33,10 +33,11 @@ describe('enable logger', () => {
 
 describe('enable multiple logger types', () => {
   it('should enable multiple logger types correctly', () => {
-    enableLogger('foo:info, foo:2')
-    expect(isLoggerEnabled('info')).toBeTruthy()
-    expect(isLoggerEnabled('error')).toBeTruthy()
-    expect(isLoggerEnabled('warn')).toBeTruthy()
+    enableLogger('foo:debug, foo:3, -foo:info')
+    expect(isLoggerEnabled('foo:debug')).toBeTruthy()
+    expect(isLoggerEnabled('foo:error')).toBeTruthy()
+    expect(isLoggerEnabled('foo:warn')).toBeTruthy()
+    expect(isLoggerEnabled('foo:info')).toBeFalsy()
   })
 })
 

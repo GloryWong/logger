@@ -87,7 +87,7 @@ function checkValue(value: string): string | undefined {
 
 function checkName(name: string): string | undefined {
   if (!/^[^:]+:[^:]+$/.test(name))
-    return 'Name should be the format `<namespace>:<value>`'
+    return `Invalid name '${name}'. Name should be the format '<namespace>:<value>'`
 
   const [namespace, value] = name.split(':')
 
@@ -98,6 +98,16 @@ function checkName(name: string): string | undefined {
   const cv = checkValue(value)
   if (cv)
     return cv
+}
+
+function checkNames(names: string) {
+  const nameArr = names.split(',')
+  for (let index = 0; index < nameArr.length; index++) {
+    const name = nameArr[index]
+    const cn = checkName(name.trim())
+    if (cn)
+      return cn
+  }
 }
 
 export interface CreateLoggerOptions {
@@ -132,30 +142,29 @@ export const loggerLevelTypes: LoggerLevelTypes = {
 }
 
 // Enable and disable
-function enableName(name: string) {
-  const cn = checkName(name)
-  if (cn) {
-    console.error('[logger]: Failed to enable logger. Invalid name `%s`. Reason: %s', name, cn)
-    return
-  }
-
-  const [namespace, value] = name.split(':')
-
-  // level
-  if (/^[1-4]$/.test(value)) {
-    const names = loggerLevelTypes[value as LoggerLevel].map(type => `${namespace}:${type}`).join(',')
-
-    console.log('===', names)
-    debug.enable(names)
-    return
-  }
-
-  return debug.enable(name)
-}
-
 function enable(names: string) {
+  const cn = checkNames(names)
+  if (cn) {
+    console.error('[logger]: Failed to enable logger with names %o. Reason: %s', names.split(','), cn)
+    return false
+  }
+
   const nameArr = names.split(',')
-  nameArr.forEach(name => name && enableName(name.trim()))
+  const _names = nameArr.reduce<string[]>((pre, cur) => {
+    const [namespace, value] = cur.split(':')
+
+    // level
+    if (/^[1-4]$/.test(value)) {
+      const names = loggerLevelTypes[value as LoggerLevel].map(type => `${namespace}:${type}`).join(',')
+      return pre.concat(names)
+    }
+    else {
+      return pre.concat(cur)
+    }
+  }, []).join(',')
+
+  debug.enable(_names)
+  return true
 }
 
 function disable() {
@@ -167,9 +176,9 @@ function isEnabled(name: string) {
 }
 
 if (isNode) {
-  const name = (await import('node:process')).env.LOGGER
-  if (name)
-    enable(name)
+  const names = (await import('node:process')).env.LOGGER
+  if (names)
+    enable(names)
 }
 else {
   if (window.localStorage.logger)

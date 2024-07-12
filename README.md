@@ -90,6 +90,8 @@ log.info('Ball player %s is performing well', 'Mary')
 
 Logger is disabled by default. You can enable all log types (`*`) or one of them(`debug`, `info`, `warn`, and `error`) by setting name (**namespace:type**), or multiple types (separated with commas, **namespace:type1,namespace:type2**). Refer to [debug.js](https://github.com/debug-js/debug/tree/master?tab=readme-ov-file#wildcards).
 
+> Note: `enable()` completely overrides the previous enabled setting.
+
 #### Platforms
 
 - To enable the logger:
