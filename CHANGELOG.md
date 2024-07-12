@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.0](https://github.com/GloryWong/logger/compare/v2.1.4...v2.2.0) (2024-07-12)
+
+
+### Features
+
+* strict name checking ([252962b](https://github.com/GloryWong/logger/commit/252962ba0acdb6e6fec0e610f978f6714d256ab1))
+
+
+### Bug Fixes
+
+* can enable multiple types ([872b64b](https://github.com/GloryWong/logger/commit/872b64b134cb4595ee44b3777faa64c54d3dfc1e))
+
 ## [2.1.4](https://github.com/GloryWong/logger/compare/v2.1.3...v2.1.4) (2024-06-28)
 
 
