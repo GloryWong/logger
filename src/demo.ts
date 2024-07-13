@@ -1,4 +1,4 @@
-import { createLogger } from './index'
+import { createLogger } from './index.js'
 
 // Namespace: foo
 const logger = createLogger('foo')
