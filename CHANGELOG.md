@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/GloryWong/logger/compare/v2.2.0...v2.2.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* **enable:** auto enable in browsers ([eed2f85](https://github.com/GloryWong/logger/commit/eed2f85dfa3864b9106010e3796c50c11496b84d))
+
 ## [2.2.0](https://github.com/GloryWong/logger/compare/v2.1.4...v2.2.0) (2024-07-12)
 
 
