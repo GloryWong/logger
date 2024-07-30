@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/GloryWong/logger/compare/v2.2.1...v2.2.2) (2024-07-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency debug to v4.3.6 ([f37fab3](https://github.com/GloryWong/logger/commit/f37fab386e89b82eb751d6fbb633fe4b3c5c2e35))
+
 ## [2.2.1](https://github.com/GloryWong/logger/compare/v2.2.0...v2.2.1) (2024-07-19)
 
 
