@@ -36,7 +36,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=18.20.4"
   },
   "scripts": {
     "build": "rimraf dist && tsc",
@@ -48,23 +48,23 @@
   },
   "dependencies": {
     "@types/debug": "^4.1.12",
-    "debug": "^4.3.5",
+    "debug": "^4.3.6",
     "detect-node-es": "^1.1.0",
     "supports-color": "^9.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.22.0",
+    "@antfu/eslint-config": "^2.24.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^20.14.10",
-    "eslint": "^9.6.0",
+    "@types/node": "^20.14.13",
+    "eslint": "^9.8.0",
     "lint-staged": "^15.2.7",
     "perfectionist": "^2.4.0",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.5.3",
-    "vitest": "^2.0.2"
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",
