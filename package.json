@@ -57,7 +57,7 @@
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^20.16.0",
+    "@types/node": "^20.16.1",
     "eslint": "^9.9.0",
     "lint-staged": "^15.2.9",
     "perfectionist": "^2.4.0",
