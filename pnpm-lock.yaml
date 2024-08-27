@@ -40,16 +40,8 @@ importers:
         specifier: ^9.9.1
         version: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
       lint-staged:
-<<<<<<< HEAD
-        specifier: ^15.2.8
-        version: 15.2.8(supports-color@9.4.0)
-=======
         specifier: ^15.2.9
         version: 15.2.9(supports-color@9.4.0)
-      perfectionist:
-        specifier: ^2.4.0
-        version: 2.4.0
->>>>>>> a606d940e9a1d092a93cd2d0e168cc3bfb66d2b0
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -2339,7 +2331,7 @@ snapshots:
 
   '@antfu/eslint-plugin-import-x@3.1.0-1(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)':
     dependencies:
-      '@typescript-eslint/utils': 8.1.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.3.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)
       debug: 4.3.6(supports-color@9.4.0)
       doctrine: 3.0.0
       eslint: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
@@ -4409,13 +4401,7 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-<<<<<<< HEAD
-  vite-node@2.0.5(@types/node@20.14.14)(supports-color@9.4.0):
-=======
-  vendors@1.0.4: {}
-
   vite-node@2.0.5(@types/node@20.16.1)(supports-color@9.4.0):
->>>>>>> a606d940e9a1d092a93cd2d0e168cc3bfb66d2b0
     dependencies:
       cac: 6.7.14
       debug: 4.3.6(supports-color@9.4.0)
