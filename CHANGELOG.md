@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.3](https://github.com/GloryWong/logger/compare/v2.2.2...v2.2.3) (2024-08-27)
+
+
+### Bug Fixes
+
+* perfer global process ([ad3f6e4](https://github.com/GloryWong/logger/commit/ad3f6e4818f6925a35824c3630ef8e3aaa39baaa))
+
 ## [2.2.2](https://github.com/GloryWong/logger/compare/v2.2.1...v2.2.2) (2024-07-30)
 
 
