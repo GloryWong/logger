@@ -53,13 +53,13 @@
     "supports-color": "^9.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.1",
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
+    "@antfu/eslint-config": "^2.27.3",
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
     "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^20.16.1",
+    "@types/node": "^20.16.5",
     "eslint": "^9.9.1",
-    "lint-staged": "^15.2.9",
+    "lint-staged": "^15.2.10",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.5.4",
