@@ -48,22 +48,22 @@
   },
   "dependencies": {
     "@types/debug": "^4.1.12",
-    "debug": "^4.3.6",
+    "debug": "^4.3.7",
     "detect-node-es": "^1.1.0",
     "supports-color": "^9.4.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",
-    "@commitlint/cli": "^19.4.1",
-    "@commitlint/config-conventional": "^19.4.1",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^20.16.5",
-    "eslint": "^9.9.1",
+    "eslint": "^9.10.0",
     "lint-staged": "^15.2.10",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.5.4",
-    "vitest": "^2.0.5"
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",
