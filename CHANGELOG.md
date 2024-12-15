@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.4](https://github.com/GloryWong/logger/compare/v2.2.3...v2.2.4) (2024-12-15)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#47](https://github.com/GloryWong/logger/issues/47)) ([52a5e65](https://github.com/GloryWong/logger/commit/52a5e65938904671c04f73bdf3fbb448c21b1f29))
+
 ## [2.2.3](https://github.com/GloryWong/logger/compare/v2.2.2...v2.2.3) (2024-08-27)
 
 
