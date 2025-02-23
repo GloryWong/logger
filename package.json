@@ -57,7 +57,7 @@
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^20.17.18",
+    "@types/node": "^20.17.19",
     "eslint": "^9.20.1",
     "lint-staged": "^15.4.3",
     "rimraf": "^6.0.1",
