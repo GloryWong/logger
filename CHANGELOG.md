@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.4](https://github.com/GloryWong/logger/compare/v2.2.3...v2.2.4) (2025-03-03)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#47](https://github.com/GloryWong/logger/issues/47)) ([52a5e65](https://github.com/GloryWong/logger/commit/52a5e65938904671c04f73bdf3fbb448c21b1f29))
+* **deps:** update dependency supports-color to v10 ([0f5082b](https://github.com/GloryWong/logger/commit/0f5082bc9ddfb9d95d35751bd422dfd74540ee0a))
+
 ## [2.2.3](https://github.com/GloryWong/logger/compare/v2.2.2...v2.2.3) (2024-08-27)
 
 
