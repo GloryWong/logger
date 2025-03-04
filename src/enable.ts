@@ -10,7 +10,7 @@ export function enable(names: string) {
     return false
   }
 
-  const nameArr = names.split(',')
+  const nameArr = names.split(',').map(v => v.trim())
   const _names = nameArr.reduce<string[]>((pre, cur) => {
     const [namespace, value] = cur.split(':')
 
