@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.5](https://github.com/GloryWong/logger/compare/v2.2.4...v2.2.5) (2025-03-04)
+
+
+### Bug Fixes
+
+* compatible to spaces among namespaces ([9a93ace](https://github.com/GloryWong/logger/commit/9a93ace9445f1750c934b5c02a307b204157ea93))
+
 ## [2.2.4](https://github.com/GloryWong/logger/compare/v2.2.3...v2.2.4) (2025-03-03)
 
 
