@@ -53,17 +53,17 @@
     "supports-color": "^10.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.3.0",
+    "@antfu/eslint-config": "^4.6.0",
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^20.17.19",
+    "@types/node": "^20.17.23",
     "eslint": "^9.21.0",
     "lint-staged": "^15.4.3",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.7.3",
-    "vitest": "^3.0.7"
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",
