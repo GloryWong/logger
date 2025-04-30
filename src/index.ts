@@ -11,11 +11,11 @@ getClientNameSetting().then((name) => {
 })
 
 export { LoggerLevel, LoggerLevelTypes, LoggerType } from './constants.js'
-export { Logger, LoggerMethod, CreateLoggerOptions } from './createLogger.js'
+export { CreateLoggerOptions, Logger, LoggerMethod } from './createLogger.js'
 
 export {
   createLogger,
-  enable as enableLogger,
   disable as disableLogger,
+  enable as enableLogger,
   isEnabled as isLoggerEnabled,
 }

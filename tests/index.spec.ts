@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createLogger, disableLogger, enableLogger, isLoggerEnabled } from '../src/index'
 import { loggerLevelTypes } from '../src/constants'
+import { createLogger, disableLogger, enableLogger, isLoggerEnabled } from '../src/index'
 
 const { debugSpy, infoSpy, warnSpy, errorSpy } = vi.hoisted(() => ({
   debugSpy: vi.spyOn(globalThis.console, 'debug'),

@@ -1,6 +1,6 @@
+import type { LoggerLevel } from './constants.js'
 import debug from 'debug'
 import { checkNames } from './checkNames.js'
-import type { LoggerLevel } from './constants.js'
 import { loggerLevelTypes } from './constants.js'
 
 export function enable(names: string) {

@@ -1,7 +1,7 @@
-import { isNode } from 'detect-node-es'
-import debug from 'debug'
-import { checkNamespace } from './checkNamespace.js'
 import type { LoggerConfig, LoggerType } from './constants.js'
+import debug from 'debug'
+import { isNode } from 'detect-node-es'
+import { checkNamespace } from './checkNamespace.js'
 import { configs } from './constants.js'
 
 function createDebugger(
