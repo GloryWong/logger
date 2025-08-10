@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.6](https://github.com/GloryWong/logger/compare/v2.2.5...v2.2.6) (2025-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#74](https://github.com/GloryWong/logger/issues/74)) ([a405466](https://github.com/GloryWong/logger/commit/a4054667aee63ff27c23cc6c58f48a49f733f0fe))
+* **deps:** update all non-major dependencies ([#89](https://github.com/GloryWong/logger/issues/89)) ([0446d2a](https://github.com/GloryWong/logger/commit/0446d2a346bcb293b264725d521a8c7167046e6e))
+
 ## [2.2.5](https://github.com/GloryWong/logger/compare/v2.2.4...v2.2.5) (2025-03-04)
 
 
