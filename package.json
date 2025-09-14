@@ -50,7 +50,7 @@
     "@types/debug": "^4.1.12",
     "debug": "^4.4.1",
     "detect-node-es": "^1.1.0",
-    "supports-color": "^10.2.0"
+    "supports-color": "^10.2.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
@@ -58,7 +58,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^20.19.13",
-    "eslint": "^9.34.0",
+    "eslint": "^9.35.0",
     "lint-staged": "^15.5.2",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.13.1",
