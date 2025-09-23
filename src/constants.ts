@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-export type LoggerType = 'debug' | 'info' | 'warn' | 'error'
+export type LoggerType = 'debug' | 'info' | 'warn' | 'error' | 'group' | 'groupEnd'
 
 export interface LoggerConfig {
   type: LoggerType
@@ -37,14 +37,26 @@ export const configs: Readonly<LoggerConfig>[] = [
     color: '#DC143C',
     colorCode: 160,
   },
+  {
+    type: 'group',
+    consoleMethod: console.group,
+    color: 'gray',
+    colorCode: 7,
+  },
+  {
+    type: 'groupEnd',
+    consoleMethod: console.groupEnd,
+    color: 'gray',
+    colorCode: 7,
+  },
 ]
 
 export type LoggerLevel = '1' | '2' | '3' | '4'
 export type LoggerLevelTypes = Record<LoggerLevel, LoggerType[]>
 
 export const loggerLevelTypes: LoggerLevelTypes = {
-  1: ['error'],
-  2: ['error', 'warn'],
-  3: ['error', 'warn', 'info'],
-  4: ['error', 'warn', 'info', 'debug'],
+  1: ['error', 'group', 'groupEnd'],
+  2: ['error', 'warn', 'group', 'groupEnd'],
+  3: ['error', 'warn', 'info', 'group', 'groupEnd'],
+  4: ['error', 'warn', 'info', 'debug', 'group', 'groupEnd'],
 }

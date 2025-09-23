@@ -45,6 +45,7 @@ The only parameter `namespace` (e.g., 'myapp') helps distinguish these logs from
 
 ```javascript
 import { createLogger } from '@gloxy/logger'
+
 const logger = createLogger('myapp')
 ```
 
@@ -63,6 +64,7 @@ You can create title-scoped logger `logger(<title>)`, especially useful for modu
 /* ./logger.js  */
 
 import { createLogger } from '@gloxy/logger'
+
 export const logger = createLogger('myapp')
 ```
 
