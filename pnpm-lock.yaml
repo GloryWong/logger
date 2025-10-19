@@ -34,7 +34,7 @@ importers:
         specifier: ^18.2.4
         version: 18.2.4
       '@types/node':
-        specifier: ^20.19.20
+        specifier: ^20.19.21
         version: 20.19.21
       eslint:
         specifier: ^9.37.0
