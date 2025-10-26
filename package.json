@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^20.19.23",
     "eslint": "^9.38.0",
