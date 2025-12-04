@@ -2,7 +2,7 @@
   "name": "@gloxy/logger",
   "type": "module",
   "version": "2.2.6",
-  "description": "A debug.js based namespaced logging utility with predefined log types(debug, info, warn, error) and supporting title-scoped logging, available in both web browsers and Node.js.",
+  "description": "DEPRECATED: use 'namespaced-logger' instead. A debug.js based namespaced logging utility with predefined log types(debug, info, warn, error) and supporting title-scoped logging, available in both web browsers and Node.js.",
   "author": {
     "name": "GloryWong",
     "email": "glorywong1001@gmail.com",

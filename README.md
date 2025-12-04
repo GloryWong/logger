@@ -1,3 +1,7 @@
+> ⚠️ **DEPRECATED**
+> This package is no longer maintained.
+> Please use **[`namespaced-logger`](https://www.npmjs.com/package/namespaced-logger)** instead.
+
 <h1 align="center">Welcome to logger 👋</h1>
 
 ![GitHub License](https://img.shields.io/github/license/GloryWong/logger)
